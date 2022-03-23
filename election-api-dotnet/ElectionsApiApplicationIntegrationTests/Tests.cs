@@ -2,7 +2,6 @@ using ElectionsApiApplication.Controllers;
 using ElectionsApiApplication.Models;
 using ElectionsApiApplication.Services;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;
@@ -14,13 +13,13 @@ namespace ElectionsApiApplicationIntegrationTests
     {
         private ResultsController Controller { get; set; }
 
-        private Mock<IResultService> MockedResultService { get; set; }
+        private IResultService MockedResultService { get; set; }
 
         public Tests()
         {
-            MockedResultService = new Mock<IResultService>();
+            MockedResultService = new MapBasedRepository();
 
-            Controller = new ResultsController(MockedResultService.Object);
+            Controller = new ResultsController(MockedResultService);
         }
 
 
@@ -76,7 +75,7 @@ namespace ElectionsApiApplicationIntegrationTests
 
         private Scoreboard? RunTest(int numberOfResults)
         {
-            MockedResultService.Object.Reset();
+            MockedResultService.Reset();
 
             for (int i = 1; i <= numberOfResults; i++)
             {
