@@ -27,7 +27,7 @@ During your assessment we will ask you to work though the task in `tasks.md` wit
 - .NET 6
 - Visual Studio 2022
 
-### Please ensure that the project builds without error within your choice of IDE. This should require no changes to the files in this repository.
+### Please ensure that the project builds without error and you are able to debug it. This should require no changes to the files in this repository.
 
 
 ### To Run Web App
